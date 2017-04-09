@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+	<style>
+		* {
+			outline: 1px solid red;
+		}
+
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="400px" height="400px">
+	</canvas>
+	<script src='jquery-1.9.0.min.js'></script>
+	<script>
+	var randColor = function() {
+		rand = Math.round(0 - 0.5 + Math.random() * (255 - 0 + 1));
+		return rand;
+	};
+	var canvas, w, h, ctx, r, g, b, d;
+	d = 30;
+	var init = function() {
+		canvas = document.getElementById('canvas');
+		w = canvas.width;
+		h = canvas.height;
+		ctx = canvas.getContext('2d');
+		ctx.strokeRect(0,0,w,h);
+		setInterval(animate, 25);
+	}
+	var obj = {x: undefined, y: undefined, vx: 0};
+
+	function animate() {
+		ctx.clearRect(0,0,w,h);
+		ctx.strokeRect(0,0,w,h);
+		document.addEventListener('click', function(event){
+				obj.x = event.offsetX;
+				obj.y = event.offsetY;
+				obj.vy = 5;
+				r = randColor();
+				g = randColor();
+				b = randColor();
+		}, false);
+		obj.y -= obj.vy;
+		if(obj.y < 0-d) {
+			return;
+		}
+		
+		ctx.beginPath();
+		ctx.fillStyle = 'rgb(' + r +',' + g + ',' + b + ')';
+		ctx.arc(obj.x, obj.y, d, 0, 2*Math.PI, true);
+		ctx.closePath();
+		ctx.fill();
+	}
+	window.onload = init();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

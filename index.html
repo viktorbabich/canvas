@@ -44,11 +44,12 @@
 				opacity = 100;
 		}, false);
 		obj.y -= obj.vy;
+
 		opacity -= 3;
-		if(obj.y < 0-d) {
+		if(obj.y < -d) {
 			return;
 		}
-		
+		console.log(obj.y)
 		ctx.beginPath();
 		ctx.globalAlpha = opacity/100;
 		ctx.fillStyle = 'rgb(' + r +',' + g + ',' + b + ')';
